@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: set up node
-        uses: christrewin/openapi-to-json-schema@v0.0.2
+      - name: openapi to json schema
+        uses: christrewin/openapi-to-json-schema@v0.0.3
       - name: List openapi specification file
         run: |
           ls -al openapi.yml
