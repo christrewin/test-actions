@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: openapi to json schema
         id: openapi-to-json-schema
-        uses: christrewin/openapi-to-json-schema@v0.0.6
+        uses: christrewin/openapi-to-json-schema@v0.0.7
         with:
           specification-url: 'https://dev.telstra.com/sites/default/files/redocs/1620871323/messaging-api-swagger_0.yaml'
       - name: List specification file
