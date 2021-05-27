@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: set up node
-        uses: actions/openapi-to-json-schema@v0.0.2
+        uses: christrewin/openapi-to-json-schema@v0.0.2
       - name: List openapi specification file
         run: |
           ls -al openapi.yml
