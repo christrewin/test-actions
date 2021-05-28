@@ -18,6 +18,5 @@ jobs:
           specification-url: 'https://devxspecs.s3-ap-southeast-2.amazonaws.com/openapi.yaml'
       - name: List specification file
         run: |
-          cd openapi \
-          ls -al openapi \
+          ls -al \
           docker --version
