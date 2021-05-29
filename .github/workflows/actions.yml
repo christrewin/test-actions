@@ -16,9 +16,9 @@ jobs:
         with:
           # specification-url: 'https://dev.telstra.com/sites/default/files/redocs/1620871323/messaging-api-swagger_0.yaml'
           specification-url: 'https://devxspecs.s3-ap-southeast-2.amazonaws.com/openapi.yaml'
-      # - id: list-spec-file
-      #   name: List spec file
-      #   run: |
-      #     ls -al \
-      #     docker --version
-      #   shell: bash
+      - id: list-spec-file
+        name: List spec file
+        run: |
+          ls -al ${{ github.action_path }} \
+          docker --version
+        shell: bash
