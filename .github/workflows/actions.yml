@@ -15,11 +15,36 @@ jobs:
         with:
           # specification-url: 'https://dev.telstra.com/sites/default/files/redocs/1620871323/messaging-api-swagger_0.yaml'
           specification-url: 'https://devxspecs.s3-ap-southeast-2.amazonaws.com/openapi.yaml'
-      - id: list-spec-file
-        name: List spec file
+      - id: list-file
+        name: List file
         run: |
-          value=`ls -al ${{ github.workspace }}`
-          echo The filesystem is $value
-          value=`cat ${{ github.workspace }}/openapi/openapi.json`
+          value=`file ${{ github.workspace }}/openapi/openapi.json`
+          echo The file is $value
+        shell: bash
+  checkout-repo:
+    runs-on: ubuntu-latest
+    steps:
+      - id: list-file
+        name: List file
+        run: |
+          value=`file ${{ github.workspace }}/openapi/openapi.json`
+          echo The file is $value
+        shell: bash
+  build-project:
+    runs-on: ubuntu-latest
+    steps:
+      - id: list-file
+        name: List file
+        run: |
+          value=`file ${{ github.workspace }}/openapi/openapi.json`
+          echo The file is $value
+        shell: bash
+  package-project:
+    runs-on: ubuntu-latest
+    steps:
+      - id: list-file
+        name: List file
+        run: |
+          value=`file ${{ github.workspace }}/openapi/openapi.json`
           echo The file is $value
         shell: bash
