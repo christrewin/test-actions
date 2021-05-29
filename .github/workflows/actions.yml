@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  schema:
+  openapi-to-json-schema:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -19,6 +19,6 @@ jobs:
       - id: list-spec-file
         name: List spec file
         run: |
-          ls -al ${{ github.action_path }} \
-          docker --version
+          value=`cat openapi.json`
+          echo The result is $value
         shell: bash
