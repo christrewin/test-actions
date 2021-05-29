@@ -31,14 +31,15 @@ jobs:
     needs:
       - openapi-to-json-schema
     steps:
-      - name: Download openapi.json
+      - id: download-artifact
+        name: openapi.json
         uses: actions/download-artifact@v2
         with:
           name: openapi.json
       - id: list-file
         name: List file
         run: |
-          value=`cat ${{ github.workspace }}/${{ steps.openapi-to-json-schema.outputs.json-schema-file }}`
+          value=`cat ${{ github.workspace }}/${{ steps.download-artifact.name }}`
           echo The file is $value
         shell: bash
   # build-project:
