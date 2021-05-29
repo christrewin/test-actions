@@ -21,36 +21,53 @@ jobs:
           value=`file ${{ github.workspace }}/openapi/openapi.json`
           echo The file is $value
         shell: bash
+      - name: Upload openapi.json
+        uses: actions/upload-artifact@v2
+        with:
+          name: openapi-json
+          path: ${{ github.workspace }}/openapi/openapi.json
   checkout-repo:
     runs-on: ubuntu-latest
     needs:
       - openapi-to-json-schema
     steps:
+      - name: Download openapi.json
+        uses: actions/download-artifact@v2
+        with:
+          name: openapi-json
       - id: list-file
         name: List file
         run: |
           value=`file ${{ github.workspace }}/openapi/openapi.json`
           echo The file is $value
         shell: bash
-  build-project:
-    runs-on: ubuntu-latest
-    needs:
-      - checkout-repo
-    steps:
-      - id: list-file
-        name: List file
-        run: |
-          value=`file ${{ github.workspace }}/openapi/openapi.json`
-          echo The file is $value
-        shell: bash
-  package-project:
-    runs-on: ubuntu-latest
-    needs:
-      - build-project
-    steps:
-      - id: list-file
-        name: List file
-        run: |
-          value=`file ${{ github.workspace }}/openapi/openapi.json`
-          echo The file is $value
-        shell: bash
+  # build-project:
+  #   runs-on: ubuntu-latest
+  #   needs:
+  #     - checkout-repo
+  #   steps:
+  #     - name: Download openapi.json
+  #       uses: actions/download-artifact@v2
+  #       with:
+  #         name: openapi-json
+  #     - id: list-file
+  #       name: List file
+  #       run: |
+  #         value=`file ${{ github.workspace }}/openapi/openapi.json`
+  #         echo The file is $value
+  #       shell: bash
+  # package-project:
+  #   runs-on: ubuntu-latest
+  #   needs:
+  #     - build-project
+  #   steps:
+  #     - name: Download openapi.json
+  #       uses: actions/download-artifact@v2
+  #       with:
+  #         name: openapi-json
+  #     - id: list-file
+  #       name: List file
+  #       run: |
+  #         value=`file ${{ github.workspace }}/openapi/openapi.json`
+  #         echo The file is $value
+  #       shell: bash
