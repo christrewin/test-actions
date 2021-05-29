@@ -11,7 +11,7 @@ jobs:
     steps:
       - id: openapi-to-json-schema
         name: openapi to json schema
-        uses: christrewin/openapi-to-json-schema@v0.0.11
+        uses: telstra/openapi-spec-to-json-schema@v0.0.2
         with:
           # specification-url: 'https://dev.telstra.com/sites/default/files/redocs/1620871323/messaging-api-swagger_0.yaml'
           specification-url: 'https://devxspecs.s3-ap-southeast-2.amazonaws.com/openapi.yaml'
