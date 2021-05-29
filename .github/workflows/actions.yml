@@ -38,7 +38,7 @@ jobs:
       - id: list-file
         name: List file
         run: |
-          value=`file ${{ github.workspace }}/openapi/openapi.json`
+          value=`cat ${{ github.workspace }}/openapi.json`
           echo The file is $value
         shell: bash
   # build-project:
