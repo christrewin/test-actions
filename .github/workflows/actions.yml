@@ -21,10 +21,11 @@ jobs:
           value=`ls -al ${{ github.workspace }}/openapi/${{ steps.openapi-to-json-schema.outputs.json-schema-file }}`
           echo The file is $value
         shell: bash
-      - name: Upload openapi.json
+      - id: upload-artifact
+        name: openapi.json
         uses: actions/upload-artifact@v2
         with:
-          name: openapi.json
+          name: ${{ steps.openapi-to-json-schema.outputs.json-schema-file }}
           path: ${{ github.workspace }}/openapi/${{ steps.openapi-to-json-schema.outputs.json-schema-file }}
   checkout-repo:
     runs-on: ubuntu-latest
@@ -39,7 +40,7 @@ jobs:
       - id: list-file
         name: List file
         run: |
-          value=`cat ${{ github.workspace }}/${{ steps.download-artifact.name }}`
+          value=`cat ${{ github.workspace }}/openapi.json`
           echo The file is $value
         shell: bash
   # build-project:
@@ -54,7 +55,7 @@ jobs:
   #     - id: list-file
   #       name: List file
   #       run: |
-  #         value=`file ${{ github.workspace }}/${{ steps.openapi-to-json-schema.outputs.json-schema-file }}`
+  #         value=`file ${{ github.workspace }}/openapi.json`
   #         echo The file is $value
   #       shell: bash
   # package-project:
@@ -69,6 +70,6 @@ jobs:
   #     - id: list-file
   #       name: List file
   #       run: |
-  #         value=`file ${{ github.workspace }}/${{ steps.openapi-to-json-schema.outputs.json-schema-file }}`
+  #         value=`file ${{ github.workspace }}/openapi.json`
   #         echo The file is $value
   #       shell: bash
