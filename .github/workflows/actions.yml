@@ -11,7 +11,7 @@ jobs:
     steps:
       - id: openapi-to-json-schema
         name: openapi to json schema
-        uses: christrewin/openapi-to-json-schema@v0.0.8
+        uses: christrewin/openapi-to-json-schema@v0.0.9
         with:
           # specification-url: 'https://dev.telstra.com/sites/default/files/redocs/1620871323/messaging-api-swagger_0.yaml'
           specification-url: 'https://devxspecs.s3-ap-southeast-2.amazonaws.com/openapi.yaml'
@@ -19,5 +19,7 @@ jobs:
         name: List spec file
         run: |
           value=`ls -al ${{ github.workspace }}`
-          echo The result is $value
+          echo The filesystem is $value
+          value=`cat ${{ github.workspace }}/openapi/openapi.json`
+          echo The file is $value
         shell: bash
