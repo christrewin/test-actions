@@ -9,10 +9,9 @@ jobs:
   openapi-to-json-schema:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
       - id: openapi-to-json-schema
         name: openapi to json schema
-        uses: christrewin/openapi-to-json-schema@v0.0.7
+        uses: christrewin/openapi-to-json-schema@v0.0.8
         with:
           # specification-url: 'https://dev.telstra.com/sites/default/files/redocs/1620871323/messaging-api-swagger_0.yaml'
           specification-url: 'https://devxspecs.s3-ap-southeast-2.amazonaws.com/openapi.yaml'
