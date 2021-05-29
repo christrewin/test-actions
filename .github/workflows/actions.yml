@@ -11,22 +11,21 @@ jobs:
     steps:
       - id: openapi-to-json-schema
         name: openapi to json schema
-        uses: christrewin/openapi-to-json-schema@v0.0.9
+        uses: christrewin/openapi-to-json-schema@v0.0.11
         with:
           # specification-url: 'https://dev.telstra.com/sites/default/files/redocs/1620871323/messaging-api-swagger_0.yaml'
           specification-url: 'https://devxspecs.s3-ap-southeast-2.amazonaws.com/openapi.yaml'
       - id: list-file
         name: List file
         run: |
-          echo "The json-schema-path was ${{ steps.openapi-to-json-schema.outputs.json-schema-path }}"
-          value=`file ${{ steps.openapi-to-json-schema.outputs.json-schema-path }}`
+          value=`ls -al ${{ github.workspace }}/openapi/${{ steps.openapi-to-json-schema.outputs.json-schema-file }}`
           echo The file is $value
         shell: bash
       - name: Upload openapi.json
         uses: actions/upload-artifact@v2
         with:
           name: openapi.json
-          path: ${{ steps.openapi-to-json-schema.outputs.json-schema-path }}
+          path: ${{ github.workspace }}/openapi/${{ steps.openapi-to-json-schema.outputs.json-schema-file }}
   checkout-repo:
     runs-on: ubuntu-latest
     needs:
@@ -39,7 +38,7 @@ jobs:
       - id: list-file
         name: List file
         run: |
-          value=`cat ${{ steps.openapi-to-json-schema.outputs.json-schema-path }}`
+          value=`cat ${{ github.workspace }}/${{ steps.openapi-to-json-schema.outputs.json-schema-file }}`
           echo The file is $value
         shell: bash
   # build-project:
@@ -54,7 +53,7 @@ jobs:
   #     - id: list-file
   #       name: List file
   #       run: |
-  #         value=`file ${{ github.workspace }}/openapi.json`
+  #         value=`file ${{ github.workspace }}/${{ steps.openapi-to-json-schema.outputs.json-schema-file }}`
   #         echo The file is $value
   #       shell: bash
   # package-project:
@@ -69,6 +68,6 @@ jobs:
   #     - id: list-file
   #       name: List file
   #       run: |
-  #         value=`file ${{ github.workspace }}/openapi.json`
+  #         value=`file ${{ github.workspace }}/${{ steps.openapi-to-json-schema.outputs.json-schema-file }}`
   #         echo The file is $value
   #       shell: bash
