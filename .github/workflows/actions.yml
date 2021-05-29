@@ -19,6 +19,6 @@ jobs:
       - id: list-spec-file
         name: List spec file
         run: |
-          value=`cat openapi.json`
+          value=`ls -al ${{ github.workspace }}`
           echo The result is $value
         shell: bash
