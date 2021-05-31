@@ -19,7 +19,7 @@ jobs:
         name: List file
         run: |
           value=`ls -al ${{ github.workspace }}/openapi/${{ steps.openapi-to-json-schema.outputs.json-schema-file }}`
-          echo The file is $value
+          echo The spec file is $value
         shell: bash
       - id: upload-artifact
         name: openapi.json
@@ -43,33 +43,33 @@ jobs:
           value=`cat ${{ github.workspace }}/openapi.json`
           echo The file is $value
         shell: bash
-  # build-project:
-  #   runs-on: ubuntu-latest
-  #   needs:
-  #     - checkout-repo
-  #   steps:
-  #     - name: Download openapi.json
-  #       uses: actions/download-artifact@v2
-  #       with:
-  #         name: openapi.json
-  #     - id: list-file
-  #       name: List file
-  #       run: |
-  #         value=`file ${{ github.workspace }}/openapi.json`
-  #         echo The file is $value
-  #       shell: bash
-  # package-project:
-  #   runs-on: ubuntu-latest
-  #   needs:
-  #     - build-project
-  #   steps:
-  #     - name: Download openapi.json
-  #       uses: actions/download-artifact@v2
-  #       with:
-  #         name: openapi.json
-  #     - id: list-file
-  #       name: List file
-  #       run: |
-  #         value=`file ${{ github.workspace }}/openapi.json`
-  #         echo The file is $value
-  #       shell: bash
+  build-project:
+    runs-on: ubuntu-latest
+    needs:
+      - checkout-repo
+    steps:
+      - name: Download openapi.json
+        uses: actions/download-artifact@v2
+        with:
+          name: openapi.json
+      - id: list-file
+        name: List file
+        run: |
+          value=`file ${{ github.workspace }}/openapi.json`
+          echo The file is $value
+        shell: bash
+  package-project:
+    runs-on: ubuntu-latest
+    needs:
+      - build-project
+    steps:
+      - name: Download openapi.json
+        uses: actions/download-artifact@v2
+        with:
+          name: openapi.json
+      - id: list-file
+        name: List file
+        run: |
+          value=`file ${{ github.workspace }}/openapi.json`
+          echo The file is $value
+        shell: bash
