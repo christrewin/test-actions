@@ -13,8 +13,8 @@ jobs:
         name: openapi to json schema
         uses: telstra/openapi-spec-to-json-schema@v0.0.3
         with:
-          # specification-url: 'https://dev.telstra.com/sites/default/files/redocs/1620871323/messaging-api-swagger_0.yaml'
-          specification-url: 'https://devxspecs.s3-ap-southeast-2.amazonaws.com/openapi.yaml'
+          specification-url: 'https://dev.telstra.com/sites/default/files/redocs/1620871323/messaging-api-swagger_0.yaml'
+          # specification-url: 'https://devxspecs.s3-ap-southeast-2.amazonaws.com/openapi.yaml'
       - id: list-file
         name: List file
         run: |
