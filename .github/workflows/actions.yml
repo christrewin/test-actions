@@ -19,7 +19,7 @@ jobs:
         name: List file
         run: |
           value=`ls -al ${{ github.workspace }}/openapi/${{ steps.openapi-to-json-schema.outputs.json-schema-file }}`
-          echo The spec file is $value
+          echo The (Patrick was here) spec file is $value
         shell: bash
       - id: upload-artifact
         name: openapi.json
